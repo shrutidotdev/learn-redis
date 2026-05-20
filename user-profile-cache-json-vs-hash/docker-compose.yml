@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: userprofile-redis-by-shruti
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+    volumes:
+      - redis_data:/data 
+  mongo:
+    image: mongo:7
+    container_name: userprofile-mongo-by-shruti
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: userprofile-shruti_and_redis
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  redis_data:
+  mongo_data:
