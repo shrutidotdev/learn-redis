@@ -1,7 +1,7 @@
 services:
   redis:
     image: redis:7-alpine
-    container_name: redis-by-shruti-banner
+    container_name: redis-by-shruti
     ports:
       - "6379:6379"
     command: [ "redis-server", "--appendonly", "yes" ]
@@ -9,11 +9,11 @@ services:
       - redis_data:/data 
   mongo:
     image: mongo:7
-    container_name: mongo-by-shruti-banner
+    container_name: mongo-by-shruti
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_DATABASE: shruti_and_redis_banner
+      MONGO_INITDB_DATABASE: shruti_and_redis
     volumes:
       - mongo_data:/data/db
 

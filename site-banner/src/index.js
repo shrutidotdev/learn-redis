@@ -10,6 +10,13 @@ const redis = new Redis(
 
 const BANNER_KEY = "app:banner";
 
+app.get('/', async(req, res) => {
+    res.json({
+        message: "Welcome to Redis with shruti!!!!!",
+        success: true
+    })
+})
+
 app.post("/banner", async(req, res) => {
     await redis.set(BANNER_KEY, req.body.message || "Welcome to Redis with Shruti!");
     res.json({ 
@@ -20,7 +27,7 @@ app.post("/banner", async(req, res) => {
 
 app.get("/banner", async(req, res) => {
     const message = await redis.get(BANNER_KEY);
-    res.json({ message })
+    res.json({ message: "Banner from Redis, which is fast!" })
 })
 
 app.delete("/banner", async(req, res) => {
@@ -39,7 +46,7 @@ app.get("/banner/exists", async(req, res) => {
 
     // res.json({ exists : Boolean(exists)})
 })
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
